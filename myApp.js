@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
+const MESSAGE_STYLE = process.env.MESSAGE_STYLE
 
 console.log('Hello World');
-
 
 
 /* app.get('/', function(req, res) {
@@ -17,15 +17,25 @@ app.get('/', function(req, res) {
   res.sendFile(filePath);
 });
 
-app.get('/json', function(req, res) {
+/* app.get('/json', function(req, res) {
   const data = {
     "message": "Hello json"
   };
-  res.json(data);
-})
+  if (MESSAGE_STYLE == 'uppercase') {
+    res.json(data).toUpperCase();
+  } else {
+    res.json(data)
+  }
+}); */
 
-
-
+app.get('/json', function(req, res) {
+  const helloJSON = 'Hello json';
+  const message = MESSAGE_STYLE === 'uppercase' ?
+  helloJSON.toUpperCase() : helloJSON;
+  const data = {
+    "message": message
+  };
+});
 
 
 
