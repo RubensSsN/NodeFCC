@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
+
 const MESSAGE_STYLE = process.env.MESSAGE_STYLE
 
-console.log('Hello World');
 
 
 /* app.get('/', function(req, res) {
@@ -11,22 +11,6 @@ console.log('Hello World');
 
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get('/', function(req, res) {
-  const filePath = __dirname + '/views/index.html';
-  console.log(filePath);
-  res.sendFile(filePath);
-});
-
-/* app.get('/json', function(req, res) {
-  const data = {
-    "message": "Hello json"
-  };
-  if (MESSAGE_STYLE == 'uppercase') {
-    res.json(data).toUpperCase();
-  } else {
-    res.json(data)
-  }
-}); */
 
 app.get('/json', function(req, res) {
   const helloJSON = 'Hello json';
@@ -35,7 +19,15 @@ app.get('/json', function(req, res) {
   const data = {
     "message": message
   };
+  res.json(data);
 });
+
+app.get('/', function(req, res) {
+  const filePath = __dirname + '/views/index.html';
+  console.log(filePath);
+  res.sendFile(filePath);
+});
+
 
 
 
