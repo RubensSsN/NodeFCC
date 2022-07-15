@@ -29,8 +29,8 @@ app.get('/now', function(req, res, next) {
   req.time = new Date().toString();
   next();
 }, function(req,res) {
-  res.json({time: req.time})
-})
+  res.json({time: req.time});
+});
 
 app.get('/', function(req, res) {
   const filePath = __dirname + '/views/index.html';
