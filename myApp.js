@@ -29,8 +29,8 @@ app.get('/now', function(req, res, next) {
   req.time = new Date().toString();
   next();
 }, function(req,res) {
-  res.json({time: req.time});
-});
+  res.json({time: req.time})
+})
 
 app.get('/', function(req, res) {
   const filePath = __dirname + '/views/index.html';
@@ -39,6 +39,11 @@ app.get('/', function(req, res) {
 });
 
 
+app.get('/:word/echo', function(req,res) {
+  word = req.params.word;
+  const msg = {echo: word};
+  res.json(msg);
+})
 
 
 
