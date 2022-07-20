@@ -1,10 +1,8 @@
 var express = require('express');
 var app = express();
-//tried this in place of mySecret too. const secret = process.env.MESSAGE_STYLE
+const bodyParser = require('body-parser');
 
-/* app.get('/', function(req, res) {
-  res.send('Hello Express');
-}); */
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -47,9 +45,17 @@ app.get('/:word/echo', function(req,res) {
 
 app.route('/name').get(function(req,res) {
   res.json({ name: `${req.query.first} ${req.query.last}`})
+}) .post(function(req,res) {
+  res.json({ name: `${req.body.first} ${req.body.last}`})
 })
 
+/*app.post('/name', function(req,res) {     ISSO É UMA ALTERNATIVA PARA O DE CIMA SE N TIVESSE O PRIMEIRO .GET NA MESMA ROTA
+  res.json({ name: `${req.body.first} ${req.body.last}`})
+})*/
 
+/* app.get('/', function(req, res) {
+  res.send('Hello Express');
+}); */
 
 
 
